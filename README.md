@@ -12,9 +12,9 @@
 
 # 工具的使用
 
--n 或者 --name 指定名字
+-n 或者 --name 指定名字，必须参数！
 
--a 或者 --abbreviation 指定简称
+-a 或者 --abbreviation 指定简称，非必须参数。
 
 ``` python
 python gen_dic.py -n qingchen [-a] [qc]
