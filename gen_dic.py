@@ -65,7 +65,7 @@ def run():
     and_dic(args.name)
     wirte_dicfile()
 
-    print("[+] 字典已经生成在当前目录下的dic目录下的generate_dic.txt文件中。")
+    print("\n[+] 字典已经生成在当前目录下的dic目录下的generate_dic.txt文件中。")
 
 if __name__ == '__main__':
     args = args()
