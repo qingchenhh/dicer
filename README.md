@@ -16,6 +16,8 @@
 
 -a 或者 --abbreviation 指定简称，非必须参数。
 
+如：
+
 ``` python
 python gen_dic.py -n qingchen [-a] [qc]
 ```
