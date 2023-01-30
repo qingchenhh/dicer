@@ -1,0 +1,12 @@
+admin
+root
+ftp
+anonymous
+test
+admin1
+admin123
+administrator
+user
+ceshi
+guest
+ftpuser

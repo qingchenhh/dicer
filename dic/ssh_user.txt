@@ -1,0 +1,15 @@
+admin
+root
+test
+ubuntu
+centos
+user
+ceshi
+mysql
+ftp
+www
+www-data
+web
+webadmin
+webapp
+webuser
