@@ -2,9 +2,6 @@
 1234
 12345
 123456
-1234567
-12345678
-123456789
 passwd
 password
 Password
@@ -33,7 +30,6 @@ QWER
 888888
 root
 toor
-qq123456
 abc
 ABC
 abc123
@@ -46,6 +42,10 @@ aaaa
 123!@#
 abc!@#
 ...
+.
+..
+..!!
+.!
 123...
 test
 Test
