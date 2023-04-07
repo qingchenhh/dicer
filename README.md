@@ -28,4 +28,4 @@ python gen_dic.py -n qingchen,qc
 
 
 
-![image-20220404232709111](images/image-20220404232709111.png)
+![image-20220404232709111](images/jietu.png)
