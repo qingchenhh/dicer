@@ -30,7 +30,6 @@ def time_dic(names,and_str='@'):
 
 def and_dic(names,and_str='@'):
     name_list = names.split(',')
-    print(name_list)
     for name in name_list:
         with open(r'dic/base_passwd.txt', mode='r', encoding='utf-8') as f:
             for i in f:
