@@ -2,7 +2,11 @@
 1234
 12345
 123456
+1234567
+12345678
+123456789
 passwd
+pass
 password
 Password
 passw0rd
@@ -12,6 +16,7 @@ Admin
 Admin123
 admin123
 !@#$
+0
 000
 000000
 qwer
@@ -30,6 +35,7 @@ QWER
 888888
 root
 toor
+qq123456
 abc
 ABC
 abc123
@@ -42,10 +48,6 @@ aaaa
 123!@#
 abc!@#
 ...
-.
-..
-..!!
-.!
 123...
 test
 Test
