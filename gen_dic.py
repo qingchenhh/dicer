@@ -10,36 +10,32 @@ def args():
 
     return parser.parse_args()
 
-def time_dic(names,and_str='@'):
+def time_dic(names,and_strs=['@','.','_','']):
     now_year = time.strftime('%Y',time.localtime())
     last_year = str(int(time.strftime('%Y',time.localtime()))-1)
     llast_year = str(int(time.strftime('%Y', time.localtime())) - 2)
 
     year_list = [now_year,last_year,llast_year]
-    temp_list = ['','!','$']
+    temp_list = ['','!','$','.']
     name_list = names.split(',')
-    for name in name_list:
-        for i in year_list:
-            for j in temp_list:
-                dic_list.append(name + i + j)
-                dic_list.append(name + and_str + i + j)
-                dic_list.append(name.capitalize() + i + j)
-                dic_list.append(name.capitalize() + and_str + i + j)
-                dic_list.append(name.upper() + i + j)
-                dic_list.append(name.upper() + and_str + i + j)
+    for and_str in and_strs:
+        for name in name_list:
+            for i in year_list:
+                for j in temp_list:
+                    dic_list.append(name + and_str + i + j)
+                    dic_list.append(name.capitalize() + and_str + i + j)
+                    dic_list.append(name.upper() + and_str + i + j)
 
-def and_dic(names,and_str='@'):
+def and_dic(names,and_strs=['@','.','_','']):
     name_list = names.split(',')
-    for name in name_list:
-        with open(r'dic/base_passwd.txt', mode='r', encoding='utf-8') as f:
-            for i in f:
-                i = i.replace('\n','')
-                dic_list.append(name + i)
-                dic_list.append(name + and_str + i)
-                dic_list.append(name.capitalize() + i)
-                dic_list.append(name.capitalize() + and_str + i)
-                dic_list.append(name.upper() + i)
-                dic_list.append(name.upper() + and_str + i)
+    for and_str in and_strs:
+        for name in name_list:
+            with open(r'dic/base_passwd.txt', mode='r', encoding='utf-8') as f:
+                for i in f:
+                    i = i.replace('\n','')
+                    dic_list.append(name + and_str + i)
+                    dic_list.append(name.capitalize() + and_str + i)
+                    dic_list.append(name.upper() + and_str + i)
 
 def wirte_dicfile():
     with open(r'dic/generate_dic.txt',mode='w',encoding='utf-8') as f:
