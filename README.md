@@ -29,3 +29,11 @@ python gen_dic.py -n qingchen,qc
 
 
 ![image-20220404232709111](images/jietu.png)
+
+增加字符连接符+，以上程序运行qingchen的结果只能是要么全大写要么首字母大写，但是想要得到QingChen的Chen首字母大写做不到，因为不知道单词的边界是哪里，因此可以使用+号连接。如
+
+```
+python gen_dic.py -n qing+chen,abc,qc
+```
+
+![image](images/jietu2.png)
