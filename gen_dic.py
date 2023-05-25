@@ -35,19 +35,21 @@ def time_dic(name_list,and_strs=['@','.','_','']):
 
 # 拼接bash字典
 def and_dic(name_list,and_strs=['@','.','_','']):
-    for and_str in and_strs:
-        for name in name_list:
-            with open(r'dic/base_passwd.txt', mode='r', encoding='utf-8') as f:
-                for i in f:
-                    i = i.replace('\n','')
-                    # 判断连接符是否存在结尾字符中
-                    if (i.find(and_str) != -1) and (and_str != '.'):
-                        str1 = name + i
-                    else:
-                        str1 = name + and_str + i
-                    # 去重
-                    if str1 not in dic_list:
-                        dic_list.append(str1)
+    temp_list = ['','!','$','.','@']
+    for end_str in temp_list:
+        for and_str in and_strs:
+            for name in name_list:
+                with open(r'dic/base_passwd.txt', mode='r', encoding='utf-8') as f:
+                    for i in f:
+                        i = i.replace('\n','')
+                        # 判断连接符是否存在结尾字符中
+                        if (i.find(and_str) != -1) and (and_str != '.'):
+                            str1 = name + i + end_str
+                        else:
+                            str1 = name + and_str + i + end_str
+                        # 去重
+                        if str1 not in dic_list:
+                            dic_list.append(str1)
 
 # 处理传入的name
 def get_names(names):
