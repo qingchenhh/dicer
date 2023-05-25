@@ -16,7 +16,7 @@ admin
 Admin
 Admin123
 admin123
-!@#$
+!@#
 0
 qwer
 QWER
@@ -43,8 +43,8 @@ abc123456
 aaa
 123!@#
 abc!@#
-...
-123...
+..
+123..
 test
 Test
 ceshi
