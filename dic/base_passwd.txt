@@ -10,19 +10,14 @@
 passwd
 pass
 
-password
-Password
 admin
 Admin
 Admin123
 admin123
-!@#
+!@
 0
 qwer
 QWER
-1qazxsw2
-1qaz2wsx
-1qazXSW2
 135246
 111
 111111
@@ -41,8 +36,8 @@ abc123456
 123QWE
 121212
 aaa
-123!@#
-abc!@#
+123!@
+abc!@
 ..
 123..
 test

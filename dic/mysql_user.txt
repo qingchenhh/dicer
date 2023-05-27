@@ -4,3 +4,5 @@ test
 admin1
 user
 mysql
+dbuser
+ceshi
