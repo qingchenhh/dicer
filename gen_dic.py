@@ -115,7 +115,7 @@ def gen_user(names,ut):
         with open('dic/'+filename,mode='r',encoding='utf-8') as f1:
             for j in f1:
                 # 去重
-                if j.replace('\n','') not in dic_list:
+                if j.replace('\n','') not in user_list:
                     f.write(j)
     print("\n[+] 生成的用户名文件为：users.txt")
 
