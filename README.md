@@ -24,7 +24,7 @@ base_passwd.txt的使用规律，把连接如果加入的字典有在连接字�
 
 ---
 
-最后依照管理推荐一些好用的字典：
+最后依照惯例推荐一些好用的字典：
 
 >Dictionary-Of-Pentesting：https://github.com/insightglacier/Dictionary-Of-Pentesting
 >
