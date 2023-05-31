@@ -20,12 +20,14 @@ base_passwd.txt的使用规律，把连接如果加入的字典有在连接字�
 
 针对国内，对国外的爆破应该并不太友好，比如你拿去打国外的靶机，应该很少能爆破出来。
 
-**该项目的衍生项目（字典规律收集和命中率测试）：http://43.139.113.208/index.php**
+ **该项目的衍生项目（字典规律收集和命中率测试）：http://43.139.113.208/index.php** 
 
 ---
 
 最后依照惯例推荐一些好用的字典：
 
+>PentesterSpecialDict：https://github.com/a3vilc0de/PentesterSpecialDict
+>
 >Dictionary-Of-Pentesting：https://github.com/insightglacier/Dictionary-Of-Pentesting
 >
 >Web-Fuzzing-Box：https://github.com/gh0stkey/Web-Fuzzing-Box
