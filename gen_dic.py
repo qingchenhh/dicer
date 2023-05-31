@@ -7,7 +7,7 @@ dic_list = []
 def args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-n','--name',dest="name",required=True, type=str,help="输入单位或者系统名 (e.g. -n \"qingchen,qc,qqqccc,qingccc\")")
-    parser.add_argument('-ut', '--usertype', dest="usertype", required=False, default='web',type=str,
+    parser.add_argument('-ut', '--usertype', dest="usertype", required=False, default='base',type=str,
                         help="输入生成的用户名类型，可输入的类型有： base（默认）、web、rdp、mysql、mssql、ftp、ssh、tomcat)")
     parser.add_argument('-m', '--mode', dest="mode", required=False, default='add', type=str,
                         help="生成的字典默认会把password.txt的内容+name的组合一起写入到新的密码文件，如果不想让password.txt文件也追加到新密码文件可以使用该选项。(e.g. -m noadd)")
@@ -15,14 +15,14 @@ def args():
     return parser.parse_args()
 
 # 和日期拼接
-def time_dic(name_list,and_strs=['@','.','_','']):
+def time_dic(name_list,and_strs=['@','.','_','','#']):
     now_year = time.strftime('%Y',time.localtime())
     last_year = str(int(time.strftime('%Y',time.localtime()))-1)
     llast_year = str(int(time.strftime('%Y', time.localtime())) - 2)
     lllast_year = str(int(time.strftime('%Y', time.localtime())) - 3)
 
     year_list = [now_year,last_year,llast_year,lllast_year]
-    temp_list = ['','!','$','.','@']
+    temp_list = ['','!','$','.','@','#']
     for and_str in and_strs:
         for name in name_list:
             for i in year_list:
@@ -38,7 +38,7 @@ def time_dic(name_list,and_strs=['@','.','_','']):
 
 
 # 拼接bash字典
-def and_dic(name_list,and_strs=['@','.','_','']):
+def and_dic(name_list,and_strs=['@','.','_','','#']):
     temp_list = ['', '!', '$', '.', '@','#']
     for end_str in temp_list:
         for and_str in and_strs:
