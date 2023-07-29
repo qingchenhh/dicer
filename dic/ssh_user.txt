@@ -8,14 +8,6 @@ ceshi
 mysql
 ftp
 www
-www-data
 web
-webadmin
-webapp
-webuser
-Oracle
 oracle
 yunwei
-Yunwei
-yw
-Yw

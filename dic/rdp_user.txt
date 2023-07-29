@@ -6,6 +6,9 @@ administrator
 user
 ceshi
 Default
+Account
+Manager
+yunwei
 Share
 Demo
 pc
@@ -16,10 +19,4 @@ Sqlservice
 ftp
 Ghost
 home
-Account
-Manager
 General
-yunwei
-Yunwei
-yw
-Yw

@@ -1,10 +1,8 @@
-admin
 root
 ftp
 anonymous
 test
-admin1
-admin123
+admin
 administrator
 user
 ceshi
