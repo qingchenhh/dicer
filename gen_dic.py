@@ -3,14 +3,17 @@ import time
 import argparse
 
 dic_list = []
+timestr = time.strftime("%m-%d-%H%M%S", time.localtime())
+passwd_name = "password_" + timestr + ".txt"
+user_name = "user_" + timestr + ".txt"
 
 def args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-n','--name',dest="name",required=True, type=str,help="输入单位或者系统名 (e.g. -n \"qingchen,qc,qqqccc,qingccc\")")
-    parser.add_argument('-ut', '--usertype', dest="usertype", required=False, default='base',type=str,
-                        help="输入生成的用户名类型，可输入的类型有： base（默认）、web、rdp、mysql、mssql、ftp、ssh、tomcat)")
-    parser.add_argument('-m', '--mode', dest="mode", required=False, default='add', type=str,
-                        help="生成的字典默认会把password.txt的内容+name的组合一起写入到新的密码文件，如果不想让password.txt文件也追加到新密码文件可以使用该选项。(e.g. -m noadd)")
+    parser.add_argument('-t', '--type', dest="type", required=False, default='base',type=str,
+                        help="输入生成的字典类型，可输入的类型有： base（默认）、web、rdp、mysql、mssql、ftp、ssh、tomcat)")
+    parser.add_argument('-m', '--mode', dest="mode", required=False, default='webadmin', type=str,
+                        help="admin、webadmin（默认）、noadd")
 
     return parser.parse_args()
 
@@ -80,16 +83,21 @@ def get_names(names):
 
 # 把字典写入文件
 def wirte_dicfile(mode):
-    with open(r'password.txt',mode='w',encoding='utf-8') as f:
+    with open(passwd_name,mode='w',encoding='utf-8') as f:
         for i in dic_list:
             f.write(i + '\n')
-        if (mode != "noadd"):
-            with open('dic/password.txt',mode='r',encoding='utf-8') as f1:
+        if mode != "noadd":
+            pass_path = "dic/" + mode + "_password.txt"
+            if not os.path.exists(pass_path):
+                print("[-] 没有找到" + pass_path + "文件！")
+                return False
+            with open(pass_path,mode='r',encoding='utf-8') as f1:
                 for j in f1:
                     # 去重
                     if j.replace('\n','') not in dic_list:
                         f.write(j)
-    print("\n[+] 生成的密码文件为：password.txt")
+
+    print("\n[+] 生成的密码文件为：",passwd_name)
 
 def gen_user(names,ut):
     filename = ut + "_user.txt"
@@ -101,15 +109,16 @@ def gen_user(names,ut):
     for name in names1:
         temp = name.replace('+','')
         user_list.append(temp)
-        user_list.append(temp.capitalize())
-        user_list.append(temp + "admin")
+        # user_list.append(temp.capitalize())
+        # user_list.append(temp.upper())
+        # user_list.append(temp + "admin")
         user_list.append(temp + "_admin")
-        user_list.append(temp.capitalize() + "admin")
-        user_list.append(temp + "Admin")
-        user_list.append(temp.capitalize() + "Admin")
-        user_list.append(temp + "_admin")
-        user_list.append(temp.capitalize() + "_admin")
-    with open(r'users.txt',mode='w',encoding='utf-8') as f:
+        # user_list.append(temp.capitalize() + "admin")
+        # user_list.append(temp + "Admin")
+        # user_list.append(temp.capitalize() + "Admin")
+        # user_list.append(temp + "_admin")
+        # user_list.append(temp.capitalize() + "_admin")
+    with open(user_name,mode='w',encoding='utf-8') as f:
         for i in user_list:
             f.write(i + '\n')
         with open('dic/'+filename,mode='r',encoding='utf-8') as f1:
@@ -117,7 +126,7 @@ def gen_user(names,ut):
                 # 去重
                 if j.replace('\n','') not in user_list:
                     f.write(j)
-    print("\n[+] 生成的用户名文件为：users.txt")
+    print("\n[+] 生成的用户名文件为：",user_name)
 
 def run(args):
     if not os.path.isdir('dic'):
@@ -126,11 +135,8 @@ def run(args):
     elif not os.path.exists('dic/base_passwd.txt'):
         print("[-] 没有找到base_passwd.txt文件！")
         exit(-1)
-    elif not os.path.exists('dic/password.txt'):
-        print("[-] 没有找到password.txt文件！")
-        exit(-1)
     names = get_names(args.name)
-    gen_user(args.name,args.usertype)
+    gen_user(args.name,args.type)
     time_dic(names)
     and_dic(names)
     wirte_dicfile(args.mode)
