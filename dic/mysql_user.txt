@@ -1,7 +1,6 @@
 admin
 root
 test
-admin1
 user
 mysql
 dbuser
