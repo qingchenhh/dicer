@@ -105,11 +105,9 @@ python gen_dic.py -n qing+chen,qc
 
 `-m`选项的参数如下：
 
-```
-admin：该模式就是使用dic目录下面的admin_password.txt进行拼接。
-webadmin（默认）：该模式就是使用dic目录下面的webadmin_password.txt
-noadd：不拼接。
-```
++ admin：该模式就是使用dic目录下面的admin_password.txt进行拼接。
++ webadmin（默认）：该模式就是使用dic目录下面的webadmin_password.txt
++ noadd：不拼接。
 
 ## 3.3 指定用户字典类型
 
