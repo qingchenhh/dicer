@@ -1,5 +1,4 @@
 admin
 root
-user
 test
-ceshi
+system
