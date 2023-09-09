@@ -9,13 +9,26 @@ user_name = "user_" + timestr + ".txt"
 
 def args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-n','--name',dest="name",required=True, type=str,help="输入单位或者系统名 (e.g. -n \"qingchen,qc,qqqccc,qingccc\")")
+    parser.add_argument('-n','--name',dest="name",required=True, type=str,help="输入单位或者系统名 (e.g. -n \"qing+chen,qc,qqqccc,qingccc\")")
     parser.add_argument('-t', '--type', dest="type", required=False, default='base',type=str,
                         help="输入生成的字典类型，可输入的类型有： base（默认）、web、rdp、mysql、mssql、ftp、ssh、tomcat)")
     parser.add_argument('-m', '--mode', dest="mode", required=False, default='webadmin', type=str,
                         help="admin、webadmin（默认）、noadd")
 
     return parser.parse_args()
+
+def get_admin():
+    now_year = time.strftime('%Y', time.localtime())
+    temp_list = ['','@','#']
+    str_list = [now_year,'123','123456']
+    end_list = ['','!']
+    base_list = ['admin']
+    for i in base_list:
+        for j in str_list:
+            for k in temp_list:
+                for l in end_list:
+                    dic_list.append(i + k + j + l)
+                    dic_list.append(i.capitalize() + k + j + l)
 
 # 和日期拼接
 def time_dic(name_list,and_strs=['@','.','_','','#']):
@@ -84,8 +97,6 @@ def get_names(names):
 # 把字典写入文件
 def wirte_dicfile(mode):
     with open(passwd_name,mode='w',encoding='utf-8') as f:
-        for i in dic_list:
-            f.write(i + '\n')
         if mode != "noadd":
             pass_path = "dic/" + mode + "_password.txt"
             if not os.path.exists(pass_path):
@@ -95,7 +106,10 @@ def wirte_dicfile(mode):
                 for j in f1:
                     # 去重
                     if j.replace('\n','') not in dic_list:
-                        f.write(j)
+                        f.write(j.replace('\n','')+'\n')
+        for i in dic_list:
+            f.write(i + '\n')
+
 
     print("\n[+] 生成的密码文件为：",passwd_name)
 
@@ -137,6 +151,7 @@ def run(args):
         exit(-1)
     names = get_names(args.name)
     gen_user(args.name,args.type)
+    get_admin()
     time_dic(names)
     and_dic(names)
     wirte_dicfile(args.mode)
