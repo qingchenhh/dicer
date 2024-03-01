@@ -40,9 +40,7 @@
 
 最后放一个衍生项目：
 
-**该项目的衍生项目（字典规律收集和命中率测试）：http://43.139.113.208/index.php** 
-
-**衍生项目的代码：**[字典收集测试](https://github.com/qingchenhh/Simple-dictionary-generator/tree/main/pass_test)
+**衍生项目（字典规律收集和命中率测试）的代码：**[字典收集测试](https://github.com/qingchenhh/Simple-dictionary-generator/tree/main/pass_test)
 
 ---
 
