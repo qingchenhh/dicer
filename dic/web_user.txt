@@ -2,9 +2,11 @@ admin
 root
 test
 ceshi
+cs
+superadmin
 system
-guest
-user
 sysadmin
-www
+user
 sys
+www
+guest
