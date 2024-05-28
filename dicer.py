@@ -9,9 +9,9 @@ user_name = "user_" + timestr + ".txt"
 
 def args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-n','--name',dest="name",required=True, type=str,help="输入单位或者系统名 (e.g. -n \"qing+chen,qc,qqqccc,qingccc\")")
+    parser.add_argument('-n','--name',dest="name",required=True, type=str,help="输入单位或者系统名 (e.g. -n \"qing+chen,qc,qqqccc\")")
     parser.add_argument('-t', '--type', dest="type", required=False, default='base',type=str,
-                        help="输入生成的字典类型，可输入的类型有： base（默认）、web、rdp、mysql、mssql、ftp、ssh、tomcat)")
+                        help="输入生成的字典类型，可输入的类型有： base（默认）、web、rdp、mysql、mssql、ftp、ssh、tomcat")
     parser.add_argument('-m', '--mode', dest="mode", required=False, default='webadmin', type=str,
                         help="admin、webadmin（默认）、noadd")
 
@@ -19,10 +19,11 @@ def args():
 
 def get_admin():
     now_year = time.strftime('%Y', time.localtime())
+    last_year = str(int(time.strftime('%Y',time.localtime()))-1)
     temp_list = ['','@','#']
-    str_list = [now_year,'123','123456']
+    str_list = [now_year,last_year,'123','123456']
     end_list = ['','!']
-    base_list = ['admin']
+    base_list = ['admin','test']
     for i in base_list:
         for j in str_list:
             for k in temp_list:
@@ -38,7 +39,7 @@ def time_dic(name_list,and_strs=['@','.','_','','#']):
     lllast_year = str(int(time.strftime('%Y', time.localtime())) - 3)
 
     year_list = [now_year,last_year,llast_year,lllast_year]
-    temp_list = ['','!','$','.','@','#']
+    temp_list = ['','!','$','.','@','#','_']
     for and_str in and_strs:
         for name in name_list:
             for i in year_list:
@@ -53,7 +54,7 @@ def time_dic(name_list,and_strs=['@','.','_','','#']):
                         dic_list.append(str1)
 
 
-# 拼接bash字典
+# 拼接base字典
 def and_dic(name_list,and_strs=['@','.','_','','#']):
     temp_list = ['', '!', '$', '.', '@','#']
     for end_str in temp_list:
