@@ -17,19 +17,25 @@ def args():
 
     return parser.parse_args()
 
-def get_admin():
+def get_admin(name_list):
     now_year = time.strftime('%Y', time.localtime())
     last_year = str(int(time.strftime('%Y',time.localtime()))-1)
     temp_list = ['','@','#']
     str_list = [now_year,last_year,'123','123456']
     end_list = ['','!']
     base_list = ['admin','test']
+
+    # 增加诸如，admin@2024、test@123456这样的字典。
     for i in base_list:
         for j in str_list:
             for k in temp_list:
                 for l in end_list:
                     dic_list.append(i + k + j + l)
                     dic_list.append(i.capitalize() + k + j + l)
+
+    # 增加诸如admin@h3c，这样admin@单位名的字典类型。
+    for name in name_list:
+        dic_list.append('admin@' + name)
 
 # 和日期拼接
 def time_dic(name_list,and_strs=['@','.','_','','#']):
@@ -152,7 +158,7 @@ def run(args):
         exit(-1)
     names = get_names(args.name)
     gen_user(args.name,args.type)
-    get_admin()
+    get_admin(names)
     time_dic(names)
     and_dic(names)
     wirte_dicfile(args.mode)
