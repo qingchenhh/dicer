@@ -3,21 +3,28 @@ import time
 import argparse
 
 dic_list = []
+user_list = []
 timestr = time.strftime("%m-%d-%H%M%S", time.localtime())
 passwd_name = "password_" + timestr + ".txt"
 user_name = "user_" + timestr + ".txt"
 
 def args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-n','--name',dest="name",required=True, type=str,help="输入单位或者系统名 (e.g. -n \"qing+chen,qc,qqqccc\")")
-    parser.add_argument('-t', '--type', dest="type", required=False, default='base',type=str,
-                        help="输入生成的字典类型，可输入的类型有： base（默认）、web、rdp、mysql、mssql、ftp、ssh、tomcat")
-    parser.add_argument('-m', '--mode', dest="mode", required=False, default='webadmin', type=str,
-                        help="admin、webadmin（默认）、noadd")
+    parser.add_argument('-n','--name',dest="name",required=False, default='', type=str,help="输入单位或者系统名 (e.g. -n \"qing+chen,qc,qqqccc\")")
+    parser.add_argument('-ut', '--usertype', dest="usertype", required=False, default='base',type=str,
+                        help="输入生成的用户名字典类型，可输入的类型有： base（默认）、web、rdp、mysql、mssql、ftp、ssh、tomcat")
+    parser.add_argument('-pm', '--passwordmode', dest="passwordmode", required=False, default='webadmin', type=str,
+                        help="指定拼接的密码字典，参数可选：admin、webadmin（默认）、noadd")
+    parser.add_argument('-p', '--prefix', dest="prefix", required=False, default='', type=str,
+                        help="指定拼接的前缀，通常是临时需要一个拼接一个前缀使用,就是把用户名单纯的拼接一个前缀而已，中间不拼接其他字符。")
+    parser.add_argument('-s', '--suffix', dest="suffix", required=False, default='', type=str,
+                        help="指定拼接的后缀，通常是临时需要一个拼接一个后缀使用,就是把用户名单纯的拼接一个后缀而已，中间不拼接其他字符。")
+    parser.add_argument('-uf', '--userfile', dest="userfile", required=False, default='', type=str,
+                        help="输入用户名列表，通常是指定top500类似的用户名，生成用户名+特定前后缀密码使用。")
 
     return parser.parse_args()
 
-def get_admin(name_list):
+def get_admin(name_list,prefix,suffix):
     now_year = time.strftime('%Y', time.localtime())
     last_year = str(int(time.strftime('%Y',time.localtime()))-1)
     temp_list = ['','@','#']
@@ -36,6 +43,17 @@ def get_admin(name_list):
     # 增加诸如admin@h3c，这样admin@单位名的字典类型。
     for name in name_list:
         dic_list.append('admin@' + name)
+
+        # 拼接前缀和后缀
+        if prefix != '' and suffix != '':
+            # 加入前缀和后缀
+            dic_list.append(prefix + name + suffix)
+        if prefix != '':
+            # 加入前缀
+            dic_list.append(prefix + name)
+        if suffix != '':
+            # 加入后缀
+            dic_list.append(name + suffix)
 
 # 和日期拼接
 def time_dic(name_list,and_strs=['@','.','_','','#']):
@@ -78,6 +96,7 @@ def and_dic(name_list,and_strs=['@','.','_','','#']):
                         if str1 not in dic_list:
                             dic_list.append(str1)
 
+
 # 处理传入的name
 def get_names(names):
     names1 = names.split(',')
@@ -112,11 +131,10 @@ def wirte_dicfile(mode):
             with open(pass_path,mode='r',encoding='utf-8') as f1:
                 for j in f1:
                     # 去重
-                    if j.replace('\n','') not in dic_list:
+                    if (j.replace('\n','') not in dic_list):
                         f.write(j.replace('\n','')+'\n')
         for i in dic_list:
             f.write(i + '\n')
-
 
     print("\n[+] 生成的密码文件为：",passwd_name)
 
@@ -125,7 +143,6 @@ def gen_user(names,ut):
     if not os.path.exists("dic/" + filename):
         print("[-] 没有找到"+filename+"文件！")
         return False
-    user_list = []
     names1 = names.split(',')
     for name in names1:
         temp = name.replace('+','')
@@ -149,6 +166,17 @@ def gen_user(names,ut):
                     f.write(j)
     print("\n[+] 生成的用户名文件为：",user_name)
 
+def get_user_pass(user_file,prefix,suffix):
+    if os.path.exists(user_file):
+        with open(user_file,mode='r',encoding='utf-8') as uf:
+            for i in uf:
+                tmp = i.replace('\n','')
+                dic_list.append(prefix + tmp + suffix)
+        return True
+    else:
+        print('[-] 指定的userfile未找到！请确认文件位置。')
+        return False
+
 def run(args):
     if not os.path.isdir('dic'):
         print("[-] 没有找到dic目录！")
@@ -156,12 +184,23 @@ def run(args):
     elif not os.path.exists('dic/base_passwd.txt'):
         print("[-] 没有找到base_passwd.txt文件！")
         exit(-1)
-    names = get_names(args.name)
-    gen_user(args.name,args.type)
-    get_admin(names)
-    time_dic(names)
-    and_dic(names)
-    wirte_dicfile(args.mode)
+    # 判断是否生成普通用户的密码
+    if args.userfile != '':
+        if args.prefix != '' or args.suffix != '':
+            utemp = get_user_pass(args.userfile,args.prefix,args.suffix)
+            if utemp:
+                wirte_dicfile('noadd')
+        else:
+            print('[-] 指定userfile就是要生成普通用户的密码，则必须指定前缀或者后缀。')
+    elif args.name != '':
+        names = get_names(args.name)
+        gen_user(args.name,args.usertype)
+        get_admin(names,args.prefix,args.suffix)
+        time_dic(names)
+        and_dic(names)
+        wirte_dicfile(args.passwordmode)
+    else:
+        print('[-] -n用法和-uf用法至少选一个，请使用-h查看帮助！')
 
 if __name__ == '__main__':
     args = args()
