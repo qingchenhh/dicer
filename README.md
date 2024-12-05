@@ -85,7 +85,7 @@ python dicer.py -n qing+chen,qc
 
 `-pm`选项的参数如下：
 
-+ admin：该模式就是使用dic目录下面的admin_password.txt进行拼接（admin的密码相较于webadmin的密码去掉了`admin' or 1=1 --+`这样属于web的密码）。
++ admin：该模式就是使用dic目录下面的admin_password.txt进行拼接（admin的密码相较于webadmin的密码去掉了`admin' or 1=1 --+`这样属于web的密码，多了一些ubuntu、Talent!23、sa123等其他密码。）。
 + webadmin（默认）：该模式就是使用dic目录下面的webadmin_password.txt。
 + noadd：不拼接。
 
