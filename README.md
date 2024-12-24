@@ -4,11 +4,9 @@
 
 **密码字典经常更新（发现没在密码字典上的密码会加上去），所以建议下载最新的字典**
 
-**跑web的管理员密码，推荐使用webadmin_password.txt字典**
-
 ## 1.1 使用tips
 
-1. **dic目录下的字典都可以单独使用**，如果有些网站不想通过python脚本根据名称生成字典也可以直接独立使用。
+1. **dic目录下的字典都可以单独使用**，如果有些网站不想通过python脚本根据名称生成字典也可以直接独立使用，**跑web的管理员密码，推荐使用webadmin_password.txt字典**。
 
 2. 特别是用户字典，比如tomcat的字典或者是ssh这些服务类的用户名其实很少是名称+admin之类的，但是为了以防万一还是生成了一个，但是其实部分情况下还是直接用最好，用户少爆破快。
 
@@ -23,22 +21,6 @@
 3. 生成的字典包含`admin@2024`、`test@2024`等，`admin@【年份】`类型的字典生成。
 4. 生成的字典包含`admin@h3c`这样的，`admin@【单位名】`类型的字典生成。
 5. 可以生成`lisi@123`、`wangwu@123`等，`【姓名拼音全称】+【统一前后缀的】`的普通用户的密码。
-
-## 1.3 字典推荐
-
-最后依照惯例推荐一些好用的字典：
-
-> PentesterSpecialDict：https://github.com/a3vilc0de/PentesterSpecialDict
->
-> Dictionary-Of-Pentesting：https://github.com/insightglacier/Dictionary-Of-Pentesting
->
-> Web-Fuzzing-Box：https://github.com/gh0stkey/Web-Fuzzing-Box
->
-> SuperWordlist：https://github.com/CrackerCat/SuperWordlist
->
-> fuzzDicts：https://github.com/TheKingOfDuck/fuzzDicts
->
-> Fuzz_dic：https://github.com/7hang/Fuzz_dic
 
 # 2. 工具的使用
 
