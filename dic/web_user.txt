@@ -1,8 +1,6 @@
 admin
 root
 test
-ceshi
-cs
 superadmin
 system
 sysadmin
@@ -11,3 +9,11 @@ sys
 www
 guest
 webmaster
+admin1
+admin01
+admin001
+test1
+test01
+test001
+cs
+ceshi
