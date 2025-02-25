@@ -27,8 +27,9 @@ def args():
 def get_admin(name_list,prefix,suffix):
     now_year = time.strftime('%Y', time.localtime())
     last_year = str(int(time.strftime('%Y',time.localtime()))-1)
+    llast_year = str(int(time.strftime('%Y', time.localtime())) - 2)
     temp_list = ['','@','#']
-    str_list = [now_year,last_year,'123','123456']
+    str_list = [now_year,last_year,llast_year,'123','123456']
     end_list = ['','!']
     base_list = ['admin','test']
 
