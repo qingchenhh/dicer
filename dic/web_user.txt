@@ -8,6 +8,7 @@ user
 sys
 www
 guest
+demo
 webmaster
 admin1
 admin01
