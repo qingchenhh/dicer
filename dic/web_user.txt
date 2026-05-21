@@ -4,11 +4,14 @@ test
 superadmin
 system
 sysadmin
+manager
+administrator
 user
 sys
 www
 guest
 demo
+dev
 webmaster
 admin1
 admin01
